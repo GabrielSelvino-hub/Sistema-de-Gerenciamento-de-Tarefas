@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Sistema_de_Gerenciamento_de_Tarefas.Context;
 using Sistema_de_Gerenciamento_de_Tarefas.Models;
 using System.Diagnostics;
 
@@ -6,13 +7,6 @@ namespace Sistema_de_Gerenciamento_de_Tarefas.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
         public IActionResult Index()
         {
             return View();
