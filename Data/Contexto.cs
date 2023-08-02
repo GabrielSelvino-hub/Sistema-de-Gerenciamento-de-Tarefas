@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Sistema_de_Gerenciamento_de_Tarefas.Models;
+using Sistema_de_Gerenciamento_de_Tarefas.Models.Entidades;
 using Sistema_de_Gerenciamento_de_Tarefas.ViewModels;
 
 namespace Sistema_de_Gerenciamento_de_Tarefas.Context

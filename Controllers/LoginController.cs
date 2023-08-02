@@ -27,6 +27,8 @@ namespace Sistema_de_Gerenciamento_de_Tarefas.Controllers
                           Problem("Entity set 'Contexto.LoginModel_1'  is null.");
         }
 
+       
+
         // GET: Login/Details/5
         public async Task<IActionResult> Details(int? id)
         {

@@ -2,12 +2,12 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Sistema_de_Gerenciamento_de_Tarefas.Models
+namespace Sistema_de_Gerenciamento_de_Tarefas.Models.Entidades
 {
     [Table("ApplicationUser")]
     public class ApplicationUser : IdentityUser
     {
-        [Display(Name ="Id")]
+        [Display(Name = "Id")]
         [Column("Id")]
         public int userId { get; set; }
         [Display(Name = "Nome")]
