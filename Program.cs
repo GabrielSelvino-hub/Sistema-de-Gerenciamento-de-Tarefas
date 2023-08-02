@@ -1,21 +1,60 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Sistema_de_Gerenciamento_de_Tarefas.Context;
+
 namespace Sistema_de_Gerenciamento_de_Tarefas
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-            var builder = WebApplication.CreateBuilder(args);
+            var host = CreateHostBuilder(args).Build();
+            host.Run();
+        }
 
-            // Add services to the container.
-            builder.Services.AddControllersWithViews();
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
+    }
 
-            var app = builder.Build();
+    public class Startup
+    {
+        private IConfiguration Configuration { get; }
 
-            // Configure the HTTP request pipeline.
-            if (!app.Environment.IsDevelopment())
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+        public void ConfigureServices(IServiceCollection services)
+        {
+            // Obtenha a string de conexão do arquivo de configuração
+            string sqlServerConnection = Configuration.GetConnectionString("DefaultConnection");
+
+            // Configure o Entity Framework Core para usar o SQL Server
+            services.AddDbContext<Contexto>(options =>
+                options.UseSqlServer(sqlServerConnection));
+
+            // Adicione outros serviços, se necessário
+            services.AddControllersWithViews();
+        }
+
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
@@ -26,11 +65,17 @@ namespace Sistema_de_Gerenciamento_de_Tarefas
 
             app.UseAuthorization();
 
-            app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "login",
+                    pattern: "Login",
+                    defaults: new { controller = "Login", action = "Login" });
 
-            app.Run();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
         }
     }
 }
