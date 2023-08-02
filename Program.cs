@@ -67,14 +67,10 @@ namespace Sistema_de_Gerenciamento_de_Tarefas
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "login",
-                    pattern: "Login",
-                    defaults: new { controller = "Login", action = "Login" });
-
+               
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Login}/{action=Index}/{id?}");
             });
         }
     }
