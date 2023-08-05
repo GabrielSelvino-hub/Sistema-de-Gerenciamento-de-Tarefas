@@ -1,4 +1,4 @@
-﻿namespace Sistema_de_Gerenciamento_de_Tarefas.Models.Repositories
+﻿namespace Sistema_de_Gerenciamento_de_Tarefas.Models.Contracts.IRepositories
 {
     public interface IRepository<T, Y>
     {

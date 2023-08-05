@@ -5,7 +5,12 @@ namespace Sistema_de_Gerenciamento_de_Tarefas.Models.Repositories
 {
     public class UsuarioRepository : IUsuarioRepository
     {
-        private readonly Contexto context;
+        private readonly Contexto _context;
+
+        public UsuarioRepository(Contexto context)
+        {
+            _context = context;
+        }
 
         public void Atualizar(IUsuarioRepository entidade)
         {
