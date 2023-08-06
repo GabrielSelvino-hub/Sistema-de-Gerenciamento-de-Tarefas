@@ -12,22 +12,41 @@ namespace Sistema_de_Gerenciamento_de_Tarefas.Models.Repositories
             _context = context;
         }
 
-        public void Atualizar(IUsuarioRepository entidade)
+        public void Atualizar(IUsuarioRepository usuario)
         {
             throw new NotImplementedException();
         }
 
-        public void Cadastrar(IUsuarioRepository entidade)
+        public void Cadastrar(IUsuarioRepository usuario)
         {
-            throw new NotImplementedException();
+            //try {
+            //    usuarios.Add(usuario);
+            //} catch (Exception ex)
+            //{
+            //    throw ex;
+            //}
         }
 
         public void Excluir(int Id)
         {
-            throw new NotImplementedException();
+            //try
+            //{
+            //    var objPesquisa = PesquisarPessoaPorId(id);
+            //    usuarios.Remove(objPesquisa);
+            //}
+            //catch (Exception ex)
+            //{
+
+            //    throw ex;
+            //}
         }
 
         public List<IUsuarioRepository> Listar()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IUsuarioRepository PesquisarPessoaPorId(int Id)
         {
             throw new NotImplementedException();
         }

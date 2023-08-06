@@ -70,7 +70,7 @@ namespace Sistema_de_Gerenciamento_de_Tarefas
                
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Login}/{action=Index}/{id?}");
+                    pattern: "{controller=Usuario}/{action=Index}/{id?}");
             });
         }
     }

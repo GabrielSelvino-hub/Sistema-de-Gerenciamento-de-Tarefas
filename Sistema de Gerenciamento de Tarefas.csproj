@@ -34,7 +34,6 @@
 
   <ItemGroup>
     <Folder Include="Models\Contexts\" />
-    <Folder Include="Models\Services\" />
   </ItemGroup>
 
 </Project>
