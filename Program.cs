@@ -5,6 +5,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Sistema_de_Gerenciamento_de_Tarefas.Context;
+using Microsoft.AspNetCore.Authorization;
+using Sistema_de_Gerenciamento_de_Tarefas.Models.Contexts;
 
 namespace Sistema_de_Gerenciamento_de_Tarefas
 {
@@ -41,9 +43,18 @@ namespace Sistema_de_Gerenciamento_de_Tarefas
             // Configure o Entity Framework Core para usar o SQL Server
             services.AddDbContext<Contexto>(options =>
                 options.UseSqlServer(sqlServerConnection));
-
+            services.AddSession();
             // Adicione outros serviços, se necessário
             services.AddControllersWithViews();
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("AutorizacaoSessionPolicy", policy =>
+                    policy.Requirements.Add(new AutorizacaoSessionPolicy("OK")));
+            });
+
+            services.AddSingleton<IAuthorizationHandler, AutorizacaoSessionHandler>();
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -62,7 +73,7 @@ namespace Sistema_de_Gerenciamento_de_Tarefas
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseSession();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Sistema_de_Gerenciamento_de_Tarefas.Context;
 using Sistema_de_Gerenciamento_de_Tarefas.Models;
 using System.Diagnostics;
@@ -7,6 +8,7 @@ namespace Sistema_de_Gerenciamento_de_Tarefas.Controllers
 {
     public class HomeController : Controller
     {
+        [Authorize(HttpContext.Session.GetString("Autorizado") == "OK")]
         public IActionResult Index()
         {
             return View();

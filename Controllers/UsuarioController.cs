@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Sistema_de_Gerenciamento_de_Tarefas.Models;
+using System.Web;
 
 namespace Sistema_de_Gerenciamento_de_Tarefas.Controllers
 {
@@ -26,7 +27,7 @@ namespace Sistema_de_Gerenciamento_de_Tarefas.Controllers
 
             if (usuario.PerformLogin())
             {
-                //HttpContext.Session.SetString("Autorizado", "OK");
+                HttpContext.Session.SetString("Autorizado", "OK");
                 Response.Redirect("/Home/Index");
             }
             else
